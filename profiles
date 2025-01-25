@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services Section</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  .services-section {
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  .slider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  .arrow {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  .arrow:hover {
+    color: #007BFF;
+  }
+  
+  .slide {
+    flex: 1;
+    text-align: center;
+    margin: 0 20px;
+  }
+  
+  .logo {
+    width: 100px;
+    height: 100px;
+    background: #007BFF;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    margin: 0 auto 10px auto;
+  }
+  
+  .description {
+    font-size: 1rem;
+  color: #555;
+  }
+  </style>
+</head>
+<body>
+  <div class="services-section">
+    <h1>Services</h1>
+    <div class="slider">
+      <button class="arrow left" onclick="prevSlide()">&#8249;</button>
+      <div class="slide">
+        <div class="logo">Logo</div>
+        <p class="description">Service description</p>
+      </div>
+      <button class="arrow right" onclick="nextSlide()">&#8250;</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script>let currentSlide = 0;
+    const slides = [
+      { logo: "Logo 1", description: "Service 1 description" },
+      { logo: "Logo 2", description: "Service 2 description" },
+      { logo: "Logo 3", description: "Service 3 description" },
+    ];
+    
+    function updateSlide() {
+      const slide = document.querySelector(".slide");
+      slide.querySelector(".logo").textContent = slides[currentSlide].logo;
+      slide.querySelector(".description").textContent = slides[currentSlide].description;
+    }
+    
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      updateSlide();
+    }
+    
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlide();
+    }
+    
+    // Initialize the first slide
+    updateSlide();</script>
+</body>
+</html>
