@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midbloom Agritech Solutions</title>
+    <link rel="stylesheet" href="midbloom.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+<style>
+    
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 10;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Styles */
+header {
+    background-color: #faf5f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #555;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: #000;
+}
+
+#menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#mobile-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    padding: 1rem;
+}
+
+#mobile-menu a {
+    margin: 0.5rem 0;
+}
+
+/* Hero Section */
+section {
+    position: relative;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 4rem 1rem;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #333;
+}
+
+p {
+    font-size: 1.25rem;
+    color: #666;
+}
+
+a {
+    text-decoration: none;
+}
+
+a.button {
+    display: inline-block;
+    margin: 1rem 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+a.button-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+a.button-primary:hover {
+    background-color: #0056b3;
+}
+
+a.button-secondary {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+a.button-secondary:hover {
+    background-color: #e2e6ea;
+}
+
+/* Decorative Elements */
+.decorative-circle {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.bottom-left {
+    bottom: 10%;
+    left: 5%;
+    background-color: #e0e0e0;
+    width: 8rem;
+    height: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom-left span {
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+.bottom-right {
+    bottom: 10%;
+    right: 5%;
+    background-color: #c6aa0a;
+    width: 10rem;
+    height: 10rem;
+}
+
+/* Custom Styles for animations */
+.fade-in {
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.bounce {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.scale-up {
+    animation: scaleUp 0.5s ease-out;
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.shake {
+    animation: shake 0.3s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+}
+
+/* Custom button animation */
+.btn-animation {
+    transition: all 0.3s ease;
+}
+
+.btn-animation:hover {
+    transform: scale(1.05);
+    background-color: #4CAF50;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+   /* Chatbot styles */
+   .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .chatbot:hover {
+            background-color: #0056b3;
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 400px;
+            height: 400px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 0.75rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            font-size: 0.9rem;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 0.5rem;
+            border-top: 0px solid #ccc;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            margin-right: 0.5rem;
+        }
+
+        .chatbot-input button {
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .chatbot-input button:hover {
+            background-color: #0056b3;
+        }
+/* General styles for the services section */
+.services-section {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f9f9f9;
+}
+
+.services-section h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+/* Slider container styles */
+.slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: auto;
+    margin: 0 auto;
+    overflow: flex;
+    margin: 0 auto 80px auto;
+}
+
+/* Slide styles */
+.slide {
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: transform 4s ease-in-out;
+    
+}
+
+.slide .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 0.75rem;
+    transition: 4s ease;
+    margin: 0 auto 100px auto;
+}
+
+.slide .description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+  
+}
+
+/* Arrow button styles */
+.arrow {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: background-color 2s ease;
+}
+
+.arrow:hover {
+    background-color: #0056b3;
+}
+
+.arrow.left {
+    left: -2rem;
+}
+
+.arrow.right {
+    right: -2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .arrow {
+        padding: 0.5rem 0.8rem;
+        font-size: 1.2rem;
+    }
+
+    .arrow.left {
+        left: -1rem;
+    }
+
+    .arrow.right {
+        right: -1rem;
+    }
+}
+
+</style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-lg fade-in">
+        <div class="container mx-auto flex justify-between items-center p-6">
+            <div class="text-xl font-bold text-green-600">Midbloom </div>
+            <nav class="hidden md:flex space-x-6 text-gray-700 hover:text-gray-900">
+                <a href="#home" class="hover:text-green-500">Home</a>
+                <a href="#blog" class="hover:text-green-500">Blog</a>
+                <a href="#services" class="hover:text-green-500">Solutions</a>
+                <a href="#about" class="hover:text-green-500">About Us</a>
+                <a href="#live-demo" class="hover:text-green-500">Live Demo</a>
+                <a href="#contact" class="hover:text-green-500">Contact</a>
+                <a href="#login" class="hover:text-green-500">Log in</a>
+            </nav>
+            <button id="menu-toggle" class="md:hidden text-gray-700 hover:text-gray-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden bg-gray-100 md:hidden">
+            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Home</a>
+            <a href="#blog" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Blog</a>
+            <a href="#services" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Solutions</a>
+            <a href="#about" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">About Us</a>
+            <a href="#live-demo" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Live Demo</a>
+            <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Contact</a>
+            <a href="#login" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Log in</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-white py-20 fade-in">
+        <div class="container mx-auto text-center">
+            <h1 class="text-5xl font-bold text-green-600">Midbloom </h1>
+            <p class="text-xl text-gray-600 mt-4">Empowering Farmers with Innovative Technology</p>
+            <div class="mt-8 flex justify-center space-x-6">
+                <a href="#services" class="bg-green-500 text-white px-8 py-4 rounded-lg shadow-md hover:bg-green-600 btn-animation">Explore Solutions</a>
+                <a href="#contact" class="bg-gray-200 text-gray-800 px-8 py-4 rounded-lg shadow-md hover:bg-gray-300 btn-animation">Contact Us</a>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 transform -translate-x-1/4 translate-y-1/4">
+            <div class="bg-green-300 h-32 w-32 rounded-full flex items-center justify-center bounce">
+                <span class="text-sm font-bold">Agritech</span>
+            </div>
+        </div>
+        <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4">
+            <div class="bg-yellow-400 h-40 w-40 rounded-full relative bounce">
+                <div class="absolute inset-0 flex justify-center items-center">
+                    <div class="bg-yellow-400 h-40 w-40 rounded-full"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Solutions Section -->
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto text-center fade-in">
+            <h2 class="text-3xl font-bold text-gray-800">Agritech Solutions for Farmers</h2>
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                    <img src="https://myagrilife.com/wp-content/uploads/2023/06/2-2-1024x576.png" alt="Farm Management" class="w-full h-48 object-cover rounded-md">
+                    <h3 class="text-xl font-semibold mt-4">Farm Management System</h3>
+                    <p class="mt-2 text-gray-600">Streamline your farm operations with AI-powered management tools.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIVJSIzQ6TV1XnxaKe0FsLL1924P6RRmgNAA&s" alt="IoT Solutions" class="w-full h-48 object-cover rounded-md">
+                    <h3 class="text-xl font-semibold mt-4">IoT Solutions for Precision Farming</h3>
+                    <p class="mt-2 text-gray-600">Leverage sensors and IoT devices for precise farming insights.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                    <img src="https://scx1.b-cdn.net/csz/news/800a/2023/artificial-intelligenc-71.jpg" alt="Climate Prediction" class="w-full h-48 object-cover rounded-md">
+                    <h3 class="text-xl font-semibold mt-4">Climate Prediction Tools</h3>
+                    <p class="mt-2 text-gray-600">Get accurate weather forecasts to optimize crop yield and reduce losses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Section -->
+    <section id="live-demo" class="py-16 bg-gray-50">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-800">Live Demo</h2>
+            <p class="text-lg text-gray-600 mt-4">Experience firsthand how our solutions work for farmers through a real-time demonstration.</p>
+            <div class="mt-8 flex justify-center space-x-6">
+                <a href="#demo" class="bg-green-500 text-white px-8 py-4 rounded-lg shadow-md hover:bg-green-600 btn-animation">Start Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-800">What Our Clients Say</h2>
+            <div class="mt-8 space-y-8">
+                <div class="bg-gray-100 p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 ease-in-out">
+                    <p class="text-lg text-gray-600">"Midbloom's solutions have helped us increase productivity by 30%. The farm management system is easy to use, and the climate prediction tools have saved us from unexpected weather disruptions!"</p>
+                    <span class="block mt-4 text-sm font-bold text-gray-800">John Doe, Organic Farm Owner</span>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 ease-in-out">
+                    <p class="text-lg text-gray-600">"The IoT solutions helped us optimize water usage and improve crop yields. Our farm's efficiency has skyrocketed since implementing Midbloom's technology."</p>
+                    <span class="block mt-4 text-sm font-bold text-gray-800">Jane Smith, Smart Farm Manager</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="services-section">
+        <h1>Services</h1>
+        <div class="slider">
+          <button class="arrow left" onclick="prevSlide()">&#8249;</button>
+          <div class="slide">
+            <div class="logo">Logo</div>
+            <p class="description">Service description</p>
+         </div>
+          <button class="arrow right" onclick="nextSlide()">&#8250;</button>
+        </div>
+      </div>
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-800">Contact Us</h2>
+            <p class="text-lg text-gray-600 mt-4">Get in touch with us for more information or a personalized consultation.</p>
+            <form class="mt-8 space-y-4 max-w-lg mx-auto">
+                <input type="text" class="w-full px-4 py-2 border rounded-lg" placeholder="Your Name" required>
+                <input type="email" class="w-full px-4 py-2 border rounded-lg" placeholder="Your Email" required>
+                <textarea class="w-full px-4 py-2 border rounded-lg" placeholder="Your Message" required></textarea>
+                <button type="submit" class="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600">Send Message</button>
+            </form>
+        </div>
+    </section>
+  
+    <div class="chatbot">💬</div>
+    <div class="chatbot-window">
+        <div class="chatbot-header">Chatbot</div>
+        <div class="chatbot-messages">
+            <p>Welcome! How can I help you today?</p>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" placeholder="Type your message...">
+            <button>Send</button>
+        </div>
+    </div>
+  <footer>copyright @2025</footer>
+    <script>
+        // JavaScript for the slider functionality
+        let currentSlide = 0;
+    const slides = [
+      { logo: "Logo 1", description: "Service 1 description" },
+      { logo: "Logo 2", description: "Service 2 description" },
+      { logo: "Logo 3", description: "Service 3 description" },
+    ];
+    
+    function updateSlide() {
+      const slide = document.querySelector(".slide");
+      slide.querySelector(".logo").textContent = slides[currentSlide].logo;
+      slide.querySelector(".description").textContent = slides[currentSlide].description;
+    }
+    
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      updateSlide();
+    }
+    
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlide();
+    }
+    
+
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        const chatbot = document.querySelector('.chatbot');
+        const chatbotWindow = document.querySelector('.chatbot-window');
+
+        chatbot.addEventListener('click', () => {
+            chatbotWindow.style.display = chatbotWindow.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        const chatbotInput = document.querySelector('.chatbot-input input');
+        const chatbotMessages = document.querySelector('.chatbot-messages');
+        const sendButton = document.querySelector('.chatbot-input button');
+
+        const predefinedResponses = {
+    "techniques": "Here are some agricultural techniques:\n1. Crop Rotation: Rotating crops to improve soil fertility.\n2. Drip Irrigation: Efficient water use for plants.\n3. Integrated Pest Management: Natural pest control methods.\n4. Organic Farming: Using natural fertilizers and methods.",
+    "hello": "Hi there! How can I assist you with agriculture?",
+    "thank you": "You're welcome! Feel free to ask more questions.",
+    "Composting": "Composting is a natural process of recycling organic material into rich soil.",
+    "soil testing": "Testing soil ensures better crop yield by knowing its nutrient content.",
+    "hydroponics": "Hydroponics is a method of growing plants without soil using nutrient-rich solutions.",
+    "greenhouses": "Greenhouses provide controlled environments for year-round farming.",
+    "mulching": "Mulching conserves soil moisture and improves fertility.",
+    "agroforestry": "Agroforestry integrates trees and shrubs into agricultural landscapes.",
+    };
+    async function fetchChatbotResponse(message) {
+    const endpoint = "https://gemini.googleapis.com/v1/models/gemini-2.0-flash-exp:generateContent";
+    const apiKey = "AIzaSyD14QxCetG9Z57jArinwEraor9sdxaDftI"; // Replace with your Gemini API key
+
+    try {
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                contents: message // Sending the user's message as input to the Gemini API
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        // Assuming Gemini API responds with `text` containing the chatbot reply
+        return data.text || "Sorry, I couldn't process your request.";
+    } catch (error) {
+        console.error("Error with Gemini API:", error);
+        return "I'm sorry, there was an error processing your request.";
+    }
+}
+
+
+sendButton.addEventListener('click', async () => {
+    const userMessage = chatbotInput.value.trim();
+    if (userMessage) {
+        const userMessageElement = document.createElement('p');
+        userMessageElement.textContent = `You: ${userMessage}`;
+        chatbotMessages.appendChild(userMessageElement);
+
+        // Check predefined responses or call Gemini API
+        const response = predefinedResponses[userMessage] || await fetchChatbotResponse(userMessage);
+        const botMessageElement = document.createElement('p');
+        botMessageElement.textContent = `Bot: ${response}`;
+        chatbotMessages.appendChild(botMessageElement);
+
+        chatbotInput.value = '';
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+});
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            const recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            const micButton = document.createElement('button');
+            micButton.textContent = '🎤';
+            micButton.style.padding = '0.5rem';
+            micButton.style.backgroundColor = '#007bff';
+            micButton.style.color = '#fff';
+            micButton.style.border = 'none';
+            micButton.style.borderRadius = '5px';
+            micButton.style.cursor = 'pointer';
+
+            micButton.addEventListener('click', () => {
+              
+                recognition.start();
+            });
+
+            recognition.addEventListener('result', (event) => {
+                const transcript = event.results[0][0].transcript;
+                chatbotInput.value = transcript;
+            });
+
+            recognition.addEventListener('end', () => {
+                sendButton.click();
+            });
+
+            document.querySelector('.chatbot-input').appendChild(micButton);
+        } else {
+            console.warn('SpeechRecognition is not supported in this browser.');
+        }
+        async function fetchChatbotResponse(message) {
+            const response = await fetch('https://api.example.com/chatbot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message })
+            });
+            const data = await response.json();
+            return data.reply;
+        }
+
+        sendButton.addEventListener('click', async () => {
+            const userMessage = chatbotInput.value.trim();
+            if (userMessage) {
+                const userMessageElement = document.createElement('p');
+                userMessageElement.textContent = `You: ${userMessage}`;
+                chatbotMessages.appendChild(userMessageElement);
+
+                const response = predefinedResponses[userMessage] || await fetchChatbotResponse(userMessage);
+                const botMessageElement = document.createElement('p');
+                botMessageElement.textContent = `Bot: ${response}`;
+                chatbotMessages.appendChild(botMessageElement);
+
+                chatbotInput.value = '';
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
