@@ -1,0 +1,70 @@
+import requests
+from geopy.geocoders import Nominatim
+
+def get_coordinates(city):
+    """Convert city name to latitude and longitude"""
+    geolocator = Nominatim(user_agent="weather_app")
+    location = geolocator.geocode(city)
+    if location:
+        print(f"Coordinates for {city}: {location.latitude}, {location.longitude}")
+        return location.latitude, location.longitude
+    else:
+        print(f"Could not find coordinates for {city}")
+        return None, None
+
+def get_weather_forecast(city):
+    """Fetch weather forecast using Open-Meteo API"""
+    lat, lon = get_coordinates(city)
+    if lat is None or lon is None:
+        return {"error": "Invalid city name. Please try again."}
+
+    base_url = "https://api.open-meteo.com/v1/forecast"
+    
+    # Define a simplified list of parameters for testing
+    daily_params = [
+        "temperature_2m_max", 
+        "temperature_2m_min", 
+        "precipitation_sum"
+    ]
+    
+    # Convert the list to a comma-separated string
+    daily_param_string = ",".join(daily_params)
+
+    params = {
+        "latitude": lat,
+        "longitude": lon,
+        "daily": daily_param_string,  # Use comma-separated values
+        "timezone": "auto"
+    }
+
+    print(f"Making request with parameters: {params}/n")  # Debugging line to print parameters
+    response = requests.get(base_url, params=params)
+    
+    # Check if the response status is OK
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return {"error": f"Failed to fetch weather data. Status Code: {response.status_code}. Response: {response.text}"}
+
+def display_forecast(data):
+    """Display weather forecast in a readable format"""
+    if "error" in data:
+        print(data["error"])
+        return
+
+    daily_forecast = data["daily"]
+    dates = daily_forecast["time"]
+    temps_max = daily_forecast["temperature_2m_max"]
+    temps_min = daily_forecast["temperature_2m_min"]
+    precipitation = daily_forecast["precipitation_sum"]
+
+    print("\nAgricultural Weather Forecast:")
+    for i in range(len(dates)):
+        print(f"\n📅 {dates[i]}:")
+        print(f"  - Min Temp: {temps_min[i]}°C, Max Temp: {temps_max[i]}°C")
+        print(f"  - Rain: {precipitation[i]}mm")
+
+if __name__ == "__main__":
+    city = input("Enter city name: ")
+    forecast_data = get_weather_forecast(city)
+    display_forecast(forecast_data)
